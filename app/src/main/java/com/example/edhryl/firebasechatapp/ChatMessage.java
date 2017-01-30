@@ -2,24 +2,26 @@ package com.example.edhryl.firebasechatapp;
 
 import java.util.Date;
 
-/**
- * Created by Edhryl on 1/27/2017.
- */
 
 public class ChatMessage {
 
+    private String uId;
     private String messageText;
     private String messageUser;
     private long messageTime;
 
-    public ChatMessage(String messageText,String messageUser){
+    public ChatMessage(String messageText,String messageUser,String uId){
         this.messageText = messageText;
         this.messageUser = messageUser;
-
+        this.uId = uId;
         messageTime = new Date().getTime();
     }
     public ChatMessage(){
 
+    }
+
+    public String getuId() {
+        return uId;
     }
 
     public String getMessageText() {
@@ -32,6 +34,10 @@ public class ChatMessage {
 
     public long getMessageTime() {
         return messageTime;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
     public void setMessageText(String messageText) {
