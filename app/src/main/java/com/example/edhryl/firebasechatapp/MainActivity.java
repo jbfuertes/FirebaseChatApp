@@ -21,6 +21,7 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import android.text.format.DateFormat;
@@ -80,29 +81,28 @@ public class MainActivity extends AppCompatActivity {
         inputMessage = (EditText)findViewById(R.id.inputMessage);
         sendUserTo = (EditText)findViewById(R.id.sendUserTo);
         //check if not sign in, if not register, navigate to sign in page
-        /*if(FirebaseAuth.getInstance().getCurrentUser() == null){
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
         }
         else{
             Snackbar.make(activity_main,"Welcome "+FirebaseAuth.getInstance().getCurrentUser().getEmail(),Snackbar.LENGTH_SHORT).show();
             //Load Content
-            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            //user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
             displayChatMessage();
-        }*/
-        displayChatMessage();
+        }
     }
 
-    public void sendButtonClicked(View view) {
+    /*public void sendButtonClicked(View view) {
 
         FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(new ChatMessage(inputMessage.getText().toString(),
                 FirebaseAuth.getInstance().getCurrentUser().getEmail(),FirebaseAuth.getInstance().getCurrentUser().getUid()));
         inputMessage.setText("");
-    }
 
+    }*/
     private void displayChatMessage(){
         ListView messageList = (ListView)findViewById(R.id.messageList);
         adapter = new FirebaseListAdapter<ChatMessage>(MainActivity.this,ChatMessage.class,R.layout.list_item,
-                FirebaseDatabase.getInstance().getReference().child("server")){
+                FirebaseDatabase.getInstance().getReference().child("Adi")){
 
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
@@ -112,11 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 messageUserText = (TextView) v.findViewById(R.id.messageUserText);
                 messageUserTime = (TextView) v.findViewById(R.id.messageUserTime);
 
-                //if(user.equals(model.getuId())) {
+                messageUser.setText(model.getMessageUser());
+                messageUserText.setText(model.getMessageUserText());
+                messageUserTime.setText(model.getMessageUserTime());
+                /*if(user.equals(String.valueOf(model.getuId()))) {
                     messageUserText.setText(model.getMessageText());
                     messageUser.setText(model.getMessageUser());
                     messageUserTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-                //}
+                }*/
             }
         };
         messageList.setAdapter(adapter);

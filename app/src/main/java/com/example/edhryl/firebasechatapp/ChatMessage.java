@@ -6,49 +6,47 @@ import java.util.Date;
 public class ChatMessage {
 
     private String uId;
-    private String messageText;
+    private String messageUserText;
     private String messageUser;
-    private long messageTime;
+    //private long messageTime;
+    private String messageUserTime;
 
-    public ChatMessage(String messageText,String messageUser,String uId){
-        this.messageText = messageText;
+    /*public ChatMessage(String messageUserText,String messageUser,String uId){
+        this.messageUserText = messageUserText;
         this.messageUser = messageUser;
         this.uId = uId;
         messageTime = new Date().getTime();
+    }*/
+    public ChatMessage(String messageUserText, String messageUser, String messageUserTime){
+        this.messageUserText = messageUser;
+        this.messageUser = messageUser;
+        this.messageUserTime = messageUserTime;
     }
     public ChatMessage(){
 
     }
 
-    public String getuId() {
-        return uId;
-    }
-
-    public String getMessageText() {
-        return messageText;
+    public String getMessageUserText() {
+        return messageUserText;
     }
 
     public String getMessageUser() {
         return messageUser;
     }
 
-    public long getMessageTime() {
-        return messageTime;
+    public String getMessageUserTime() {
+        return messageUserTime;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setMessageUserText(String messageUserText) {
+        this.messageUserText = messageUserText;
     }
 
     public void setMessageUser(String messageUser) {
         this.messageUser = messageUser;
     }
 
-    public void setMessageTime(long messageTime) {
-        this.messageTime = messageTime;
+    public void setMessageUserTime(String messageUserTime) {
+        this.messageUserTime = messageUserTime;
     }
 }
